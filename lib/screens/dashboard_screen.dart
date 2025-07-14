@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:rate_master_flutter/services/crypto_currency.dart';
 import 'package:rate_master_flutter/services/crypto_card.dart';
 import 'package:rate_master_flutter/utilities/constants.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class DashboardScreen extends StatefulWidget {
   final List<CryptoCurrency> topCoins;
@@ -25,13 +25,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   void initState() {
     super.initState();
-    updateUI(widget.topCoins);
-  }
-
-  void updateUI(dynamic cryptoCurrencyData) {
-    setState(() {
-
-    });
   }
 
   @override
@@ -67,13 +60,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget> [
-              Text(
-                'Top Crypto Currencies',
-                style: kDashboardTopCoinsTextStyle
+              Center(
+                child: Text(
+                  'Top Crypto Currencies',
+                  style: kDashboardTopCoinsTextStyle,
+                ),
               ),
               SizedBox(
-                width: 200,
-                height: 300,
+                width: 220,
+                height: 400,
                 child: Center(
                   child: PageView(
                     controller: _pageController,
@@ -83,8 +78,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     children: widget.topCoins.map((coin) {
                       return Center(
                         child: SizedBox(
-                          width: 200,
-                          height: 300,
+                          width: 220,
+                          height: 340,
                           child: CryptoCard(coin: coin),
                         ),
                       );
@@ -92,6 +87,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                 ),
               ),
+              Center(
+                child: SmoothPageIndicator(
+                  controller: _pageController,
+                  count: 5,
+                  effect: SlideEffect(
+                    //TODO: MAKE A DESIGN FOR SLIDE EFFECT
+                  ),
+                ),
+              )
             ],
           )
       )

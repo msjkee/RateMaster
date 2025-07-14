@@ -9,12 +9,14 @@ class CryptoCurrency {
   String? symbol;
   double? price;
   double? supply;
+  String? rank;
 
-  CryptoCurrency({this.name, this.id, this.symbol, this.price, this.supply});
+  CryptoCurrency({this.name, this.id, this.symbol, this.price, this.supply, this.rank});
 
   factory CryptoCurrency.fromJson(Map<String, dynamic> json) {
     return CryptoCurrency(
       id:     json['id']     as String,
+      rank:   json['rank']   as String,
       name:   json['name']   as String,
       symbol: json['symbol'] as String,
       price:  double.parse(json['priceUsd'] as String),

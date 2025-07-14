@@ -9,9 +9,9 @@ class CryptoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 4,
+      elevation: 8,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0)
+        borderRadius: BorderRadius.circular(16.0)
       ),
       child: Padding(
         padding: EdgeInsets.all(12.0),
@@ -19,22 +19,43 @@ class CryptoCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget> [
-            Image.network(
-              coin.getIconUrl(),
-              width: 100.0,
-              height: 100.0
+            CircleAvatar(
+              radius: 40,
+              backgroundColor: Colors.blue.withOpacity(0.2),
+              child: Image.network(
+                coin.getIconUrl(),
+                width: 100.0,
+                height: 100.0
+              ),
             ),
             Text(
               '${coin.name}',
-              style: kCoinNameTextStyle
+              style: kCoinNameTextStyle,
+              textAlign: TextAlign.center
             ),
+            SizedBox(height: 8),
             Text(
-              '${coin.price}',
-              style: kCoinPriceTextStyle
+              'Rank: #${coin.rank}',
+              style: kLabelTextStyle,
+              textAlign: TextAlign.center,
             ),
+            SizedBox(height: 4),
             Text(
-              '${coin.supply}',
-              style: kCoinSupplyTextStyle
+              '\$${coin.price?.toInt()}',
+              style: kCoinPriceTextStyle,
+              textAlign: TextAlign.center
+            ),
+            SizedBox(height: 4),
+            Text(
+              'Supply',
+              style: kLabelTextStyle,
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 4),
+            Text(
+              '${coin.supply?.toInt()}',
+              style: kCoinSupplyTextStyle,
+              textAlign: TextAlign.center
             )
           ],
         )
