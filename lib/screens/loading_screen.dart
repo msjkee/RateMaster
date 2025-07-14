@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:rate_master_flutter/services/crypto_currency.dart';
 import '../screens/dashboard_screen.dart';
 
 class LoadingPage extends StatefulWidget {
@@ -20,10 +21,15 @@ class _LoadingPageState extends State<LoadingPage> {
   }
 
   void getCurrencyRate() async {
-    await Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => DashboardScreen())
-    );
+    CryptoCurrency cryptoCurrency = CryptoCurrency();
+    var topCoins = await cryptoCurrency.fetchTopCryptos(5);
+
+    if (topCoins != null) {
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => DashboardScreen(topCoins: topCoins,))
+      );
+    }
   }
 
   @override

@@ -12,21 +12,35 @@ class CryptoCurrency {
 
   CryptoCurrency({this.name, this.id, this.symbol, this.price, this.supply});
 
-  Future<dynamic> fetchTopCryptos(String limit) async {
+  factory CryptoCurrency.fromJson(Map<String, dynamic> json) {
+    return CryptoCurrency(
+      id:     json['id']     as String,
+      name:   json['name']   as String,
+      symbol: json['symbol'] as String,
+      price:  double.parse(json['priceUsd'] as String),
+      supply: double.parse(json['supply'] as String),
+    );
+  }
+
+  Future<dynamic> fetchTopCryptos(int limit) async {
     final uri = Uri.https(
       'rest.coincap.io',
       '/v3/assets',
       {
-        'limit': limit,
+        'limit': limit.toString(),
         'apiKey': _apiKey
       }
     );
 
-    var cryptoData = await NetworkHelper(url: uri.toString()).getData();
-    return cryptoData;
+    final cryptoData = await NetworkHelper(url: uri.toString()).getData();
+    final List<dynamic> cryptoDataList = cryptoData['data'];
+
+    return cryptoDataList
+        .map((e) => CryptoCurrency.fromJson(e as Map<String, dynamic>)).toList();
   }
 
   String getIconUrl() {
-    return 'https://static.coincap.io/assets/icons/$symbol@2x.png';
+    final symbolLowerCase = symbol?.toLowerCase() ?? '';
+    return 'https://static.coincap.io/assets/icons/${symbolLowerCase}@2x.png';
   }
 }

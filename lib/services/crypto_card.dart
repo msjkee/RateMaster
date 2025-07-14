@@ -21,8 +21,8 @@ class CryptoCard extends StatelessWidget {
           children: <Widget> [
             Image.network(
               coin.getIconUrl(),
-              width: 48.0,
-              height: 48.0
+              width: 100.0,
+              height: 100.0
             ),
             Text(
               '${coin.name}',
