@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:rate_master_flutter/services/crypto_currency.dart';
 import 'package:rate_master_flutter/services/crypto_card.dart';
+import 'package:rate_master_flutter/utilities/constants.dart';
 
 class DashboardScreen extends StatefulWidget {
   final List<CryptoCurrency> topCoins;
@@ -67,7 +68,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget> [
               Text(
-                'Top Crypto Currencies'
+                'Top Crypto Currencies',
+                style: kDashboardTopCoinsTextStyle
               ),
               SizedBox(
                 width: 200,

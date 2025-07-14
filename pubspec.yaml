@@ -31,20 +31,22 @@ flutter:
   assets:
     - .env
 
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
+
+  fonts:
+    - family: Oswald
+      fonts:
+        - asset: fonts/Oswald/Oswald-VariableFont_wght.ttf
+
+    - family: NotoSerif
+      fonts:
+        - asset: fonts/Noto_Serif/static/NotoSerif_ExtraCondensed-Light.ttf
+          weight: 300
+        - asset: fonts/Noto_Serif/static/NotoSerif_ExtraCondensed-SemiBold.ttf
+          weight: 600
+
+    - family: OpenSans
+      fonts:
+        - asset: fonts/Open_Sans/static/OpenSans-Medium.ttf
+          weight: 500
+        - asset: fonts/Open_Sans/static/OpenSans_Condensed-Italic.ttf
+          style: italic
