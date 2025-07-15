@@ -27,7 +27,7 @@ class _LoadingPageState extends State<LoadingPage> {
     if (topCoins != null) {
       Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => DashboardScreen(topCoins: topCoins,))
+          MaterialPageRoute(builder: (context) => DashboardScreen(topCoins: topCoins))
       );
     }
   }
