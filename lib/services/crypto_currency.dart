@@ -1,5 +1,6 @@
 import '../services/networking.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter/material.dart';
 
 class CryptoCurrency {
   final String _apiKey = dotenv.env['COINCAP_API_KEY'] ?? '';
@@ -10,8 +11,17 @@ class CryptoCurrency {
   double? price;
   double? supply;
   String? rank;
+  double? changePercent;
 
-  CryptoCurrency({this.name, this.id, this.symbol, this.price, this.supply, this.rank});
+  CryptoCurrency({
+    this.name,
+    this.id,
+    this.symbol,
+    this.price,
+    this.supply,
+    this.rank,
+    this.changePercent
+  });
 
   factory CryptoCurrency.fromJson(Map<String, dynamic> json) {
     return CryptoCurrency(
@@ -21,6 +31,7 @@ class CryptoCurrency {
       symbol: json['symbol'] as String,
       price:  double.parse(json['priceUsd'] as String),
       supply: double.parse(json['supply'] as String),
+      changePercent: double.parse(json['changePercent24Hr'] as String)
     );
   }
 
@@ -44,5 +55,16 @@ class CryptoCurrency {
   String getIconUrl() {
     final symbolLowerCase = symbol?.toLowerCase() ?? '';
     return 'https://static.coincap.io/assets/icons/${symbolLowerCase}@2x.png';
+  }
+
+  Color getPercentColor() {
+    Color color;
+    if (changePercent! > 0) {
+      color = Colors.green;
+      return color;
+    } else {
+      color = Colors.red;
+      return color;
+    }
   }
 }

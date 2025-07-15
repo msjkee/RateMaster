@@ -32,3 +32,9 @@ const kLabelTextStyle = TextStyle(
   fontWeight: FontWeight.w700,
   color: Colors.black
 );
+
+const kCoinChangePercentTextStyle = TextStyle(
+    fontFamily: 'Noto_Serif',
+    fontSize: 18.0,
+    fontWeight: FontWeight.w800
+);

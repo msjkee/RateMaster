@@ -40,25 +40,40 @@ class _DashboardScreenState extends State<DashboardScreen> {
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.home,
-                  size: 20.0
+                  size: 25.0,
+                  color: Colors.black87
                 ),
-                label: 'Home'
+                label: 'Home',
             ),
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.currency_exchange,
-                  size: 20.0
+                  size: 25.0,
+                  color: Colors.black87
                 ),
                 label: 'Convert'
             ),
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.settings,
-                  size: 20.0
+                  size: 25.0,
+                  color: Colors.black87,
                 ),
                 label: 'Settings'
             )
-          ]
+          ],
+        selectedLabelStyle: TextStyle(
+          fontSize: 17.0,
+          fontFamily: 'Oswald',
+          fontWeight: FontWeight.w900,
+          color: Colors.black87
+        ),
+        unselectedLabelStyle: TextStyle(
+          fontSize: 14.0,
+          fontFamily: 'Oswald',
+          fontWeight: FontWeight.w600,
+          color: Colors.black87
+        ),
       ),
       body: SafeArea(
           child: Column(
@@ -88,7 +103,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   controller: _pageController,
                   count: widget.topCoins.length,
                   effect: SlideEffect(
-                    //TODO: MAKE A DESIGN FOR SLIDE EFFECT
+                    dotColor: Colors.grey.shade400,
+                    activeDotColor: Colors.black87
                   ),
                 ),
               )

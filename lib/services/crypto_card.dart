@@ -41,7 +41,7 @@ class CryptoCard extends StatelessWidget {
             ),
             SizedBox(height: 4),
             Text(
-              '\$${coin.price?.toInt()}',
+              '\$${coin.price?.toDouble().toStringAsFixed(2)}',
               style: kCoinPriceTextStyle,
               textAlign: TextAlign.center
             ),
@@ -56,6 +56,14 @@ class CryptoCard extends StatelessWidget {
               '${coin.supply?.toInt()}',
               style: kCoinSupplyTextStyle,
               textAlign: TextAlign.center
+            ),
+            SizedBox(height: 4),
+            Text(
+              '${coin.changePercent?.toDouble().toStringAsFixed(2)}\%',
+              textAlign: TextAlign.center,
+              style: kCoinChangePercentTextStyle.copyWith(
+                color: coin.getPercentColor()
+              )
             )
           ],
         )
