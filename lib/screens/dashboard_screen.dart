@@ -80,6 +80,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget> [
+              Text(
+                'Dive into the World of Currencies',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'Oswald',
+                  fontSize: 40.0,
+                  fontWeight: FontWeight.bold
+                )
+              ),
               Container(
                 padding: EdgeInsets.all(40),
                 child: TextField(

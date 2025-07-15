@@ -51,9 +51,26 @@ const kTextFieldInputDecoration = InputDecoration(
         fontFamily: 'Noto_Serif',
         fontSize: 15
     ),
-    border: OutlineInputBorder(
+    enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(50)),
-        borderSide: BorderSide.none
+        borderSide: BorderSide(
+            color: Colors.black87,
+            width: 1.5
+        )
+    ),
+    focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(50)),
+        borderSide: BorderSide(
+            color: Colors.black87,
+            width: 2.5
+        )
+    ),
+    disabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(50)),
+        borderSide: BorderSide(
+            color: Colors.black54,
+            width: 1.5
+        )
     )
 );
 
