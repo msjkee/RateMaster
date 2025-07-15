@@ -10,6 +10,8 @@ class ConvertScreen extends StatefulWidget {
 class _ConvertScreenState extends State<ConvertScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      backgroundColor: Colors.tealAccent,
+    );
   }
 }
