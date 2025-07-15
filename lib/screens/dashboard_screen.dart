@@ -80,6 +80,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget> [
+              Container(
+                padding: EdgeInsets.all(40),
+                child: TextField(
+                  style: kTextFieldTextStyle,
+                  decoration: kTextFieldInputDecoration.copyWith(
+                    fillColor: Colors.grey.shade300,
+                  )
+                ),
+              ),
               Center(
                 child: Text(
                   'Top Crypto Currencies',

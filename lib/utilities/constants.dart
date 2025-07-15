@@ -38,3 +38,28 @@ const kCoinChangePercentTextStyle = TextStyle(
     fontSize: 18.0,
     fontWeight: FontWeight.w800
 );
+
+const kTextFieldInputDecoration = InputDecoration(
+    filled: true,
+    icon: Icon(
+        Icons.find_in_page
+    ),
+    iconColor: Colors.black87,
+    hintText: 'Enter Currency or Cryptocurrency',
+    hintStyle: TextStyle(
+        fontWeight: FontWeight.w500,
+        fontFamily: 'Noto_Serif',
+        fontSize: 15
+    ),
+    border: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(50)),
+        borderSide: BorderSide.none
+    )
+);
+
+const kTextFieldTextStyle = TextStyle(
+    color: Colors.black87,
+    fontFamily: 'Noto_Serif',
+    fontSize: 20.0,
+    fontWeight: FontWeight.w700
+);
