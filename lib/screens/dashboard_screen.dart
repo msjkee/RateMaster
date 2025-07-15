@@ -1,7 +1,6 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:rate_master_flutter/services/crypto_currency.dart';
-import 'package:rate_master_flutter/services/crypto_card.dart';
+import 'package:rate_master_flutter/services/auto_sliding_carousel.dart';
 import 'package:rate_master_flutter/utilities/constants.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -15,40 +14,22 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  Timer? _timer;
-  int _currentPage = 0;
-
-  final _pageController = PageController(
-    initialPage: 0,
-    viewportFraction: 1.0,
-    keepPage: true
-  );
-
   CryptoCurrency cryptoCurrency = CryptoCurrency();
+  late final PageController _pageController;
 
   @override
   void initState() {
     super.initState();
-    _timer = Timer.periodic(Duration(seconds: 3), (Timer timer) {
-      if (_currentPage < widget.topCoins.length) {
-        _currentPage++;
-      } else {
-        _currentPage = 0;
-      }
-
-      _pageController.animateToPage(
-        _currentPage,
-        duration: Duration(milliseconds: 350),
-        curve: Curves.easeIn
-      );
-    }
+    _pageController = PageController(
+        initialPage: 0,
+        keepPage: true,
+        viewportFraction: 1
     );
   }
 
   @override
   void dispose() {
     super.dispose();
-    _timer?.cancel();
   }
 
   @override
@@ -94,27 +75,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 width: 220,
                 height: 400,
                 child: Center(
-                  child: PageView(
+                  child: AutoSlidingCarousel(
                     controller: _pageController,
-                    scrollDirection: Axis.horizontal,
-                    reverse: false,
-                    pageSnapping: true,
-                    children: widget.topCoins.map((coin) {
-                      return Center(
-                        child: SizedBox(
-                          width: 220,
-                          height: 340,
-                          child: CryptoCard(coin: coin),
-                        ),
-                      );
-                    }).toList(),
-                  ),
+                    viewportFraction: 1,
+                    interval: const Duration(seconds: 3),
+                    coins: widget.topCoins
+                  )
                 ),
               ),
               Center(
                 child: SmoothPageIndicator(
                   controller: _pageController,
-                  count: 5,
+                  count: widget.topCoins.length,
                   effect: SlideEffect(
                     //TODO: MAKE A DESIGN FOR SLIDE EFFECT
                   ),
