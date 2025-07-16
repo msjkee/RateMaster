@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 const kCoinNameTextStyle = TextStyle(
   fontSize: 30.0,
@@ -79,4 +80,13 @@ const kTextFieldTextStyle = TextStyle(
     fontFamily: 'Noto_Serif',
     fontSize: 20.0,
     fontWeight: FontWeight.w700
+);
+
+const kLoadingSpinKit = Scaffold(
+    body: Center(
+        child: SpinKitFadingCircle(
+            size: 50.0,
+            color: Colors.black,
+        ),
+    ),
 );

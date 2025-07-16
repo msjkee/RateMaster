@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'crypto_currency.dart';
+import '../services/crypto_currency.dart';
 import 'package:rate_master_flutter/utilities/constants.dart';
 
 class CryptoCard extends StatelessWidget {

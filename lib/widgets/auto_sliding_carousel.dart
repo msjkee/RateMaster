@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'crypto_card.dart';
-import 'crypto_currency.dart';
+import '../services/crypto_currency.dart';
 
 class AutoSlidingCarousel extends StatefulWidget {
   final List<CryptoCurrency> coins;

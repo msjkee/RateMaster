@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:rate_master_flutter/screens/convert_screen.dart';
 import 'package:rate_master_flutter/screens/dashboard_screen.dart';
 import 'package:rate_master_flutter/screens/settings_screen.dart';
-import 'package:rate_master_flutter/services/crypto_currency.dart';
 
 class BottomNavBar extends StatefulWidget {
-  final List<CryptoCurrency> topCoins;
-  const BottomNavBar({required this.topCoins ,super.key});
+
+  const BottomNavBar({
+    super.key
+  });
 
   @override
   State<BottomNavBar> createState() => _BottomNavBarState();
@@ -25,11 +26,13 @@ class _BottomNavBarState extends State<BottomNavBar> {
               // Dashboard
               GestureDetector(
                 onTap: () {
-                  setState(() {
-                    Navigator.push(
+                  Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => DashboardScreen(topCoins: widget.topCoins))
-                    );
+                      MaterialPageRoute(builder: (context) => DashboardScreen()))
+                      .then((context) {
+                        setState(() {
+
+                        });
                   });
                 },
                 child: Column(
@@ -55,12 +58,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
               // Convert
               GestureDetector(
                   onTap: () {
-                    setState(() {
-                      Navigator.push(
+                    Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => ConvertScreen())
-                      );
-                    });
+                    );
                   },
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -85,12 +86,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
               // Settings
               GestureDetector(
                   onTap: () {
-                    setState(() {
-                      Navigator.push(
+                    Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => SettingsScreen())
-                      );
-                    });
+                    );
                   },
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

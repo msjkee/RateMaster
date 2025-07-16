@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:rate_master_flutter/services/crypto_currency.dart';
-import 'package:rate_master_flutter/services/auto_sliding_carousel.dart';
+import 'package:rate_master_flutter/widgets/auto_sliding_carousel.dart';
 import 'package:rate_master_flutter/utilities/constants.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:rate_master_flutter/services/bottom_nav_bar.dart';
+import 'package:rate_master_flutter/widgets/bottom_nav_bar.dart';
 
 class DashboardScreen extends StatefulWidget {
-  final List<CryptoCurrency> topCoins;
-
-  const DashboardScreen({required this.topCoins, super.key});
+  const DashboardScreen({super.key});
 
   @override
   State<DashboardScreen> createState() => _DashboardScreenState();
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  CryptoCurrency cryptoCurrency = CryptoCurrency();
+  List<CryptoCurrency>? topCoins;
   late final PageController _pageController;
 
   @override
@@ -26,17 +24,30 @@ class _DashboardScreenState extends State<DashboardScreen> {
         keepPage: true,
         viewportFraction: 1
     );
+    loadTopCryptoCurrencies();
   }
 
   @override
   void dispose() {
     super.dispose();
   }
+  
+  Future<void> loadTopCryptoCurrencies() async {
+    CryptoCurrency cryptoCurrency = CryptoCurrency();
+    final list = await cryptoCurrency.fetchTopCryptos(5);
+    setState(() {
+      topCoins = list;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    if (topCoins == null) {
+      return kLoadingSpinKit;
+    }
+
     return Scaffold(
-      bottomNavigationBar: BottomNavBar(topCoins: widget.topCoins),
+      bottomNavigationBar: BottomNavBar(),
       body: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -74,14 +85,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     controller: _pageController,
                     viewportFraction: 1,
                     interval: const Duration(seconds: 3),
-                    coins: widget.topCoins
+                    coins: topCoins!
                   )
                 ),
               ),
               Center(
                 child: SmoothPageIndicator(
                   controller: _pageController,
-                  count: widget.topCoins.length,
+                  count: topCoins!.length,
                   effect: SlideEffect(
                     dotColor: Colors.grey.shade400,
                     activeDotColor: Colors.black87
@@ -97,8 +108,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
 
 //TODO: MAKE A BOTTOM NAV BAR (MAKE IT AS CONTAINERS) *CUSTOM WIDGET* DONE
-//TODO: NAVIGATION LOGIC *** DONE
 
+//TODO: NAVIGATION LOGIC ***
+//TODO: DESIGN BOTTOM NAV BAR (HEIGHT, ACTIVE COLORS, DISABLED COLORS) ***
 //TODO: SEARCH LOGIC (CRYPTO AND CURRENCY) *DASHBOARD SCREEN, I GUESS*
 //TODO: SETTINGS PAGE
 //TODO: CONVERT PAGE
