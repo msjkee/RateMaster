@@ -47,7 +47,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
     }
 
     return Scaffold(
-      bottomNavigationBar: BottomNavBar(),
+      bottomNavigationBar: BottomNavBar(
+        dashboardIsSelected: true,
+        convertIsSelected: false,
+        settingsIsSelected: false,
+      ),
       body: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -108,51 +112,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
 
 //TODO: MAKE A BOTTOM NAV BAR (MAKE IT AS CONTAINERS) *CUSTOM WIDGET* DONE
+//TODO: NAVIGATION LOGIC *** DONE
+//TODO: DESIGN BOTTOM NAV BAR (HEIGHT, ACTIVE COLORS, DISABLED COLORS) *** DONE, BUT NEED TO DIVE INTO PADDINGS, MARGINS AND HEIGHT-WIDTH PARAMETERS OF CONTAINERS
 
-//TODO: NAVIGATION LOGIC ***
-//TODO: DESIGN BOTTOM NAV BAR (HEIGHT, ACTIVE COLORS, DISABLED COLORS) ***
 //TODO: SEARCH LOGIC (CRYPTO AND CURRENCY) *DASHBOARD SCREEN, I GUESS*
 //TODO: SETTINGS PAGE
 //TODO: CONVERT PAGE
 //TODO: DESIGN
-
-// BottomNavigationBar(
-//   items: <BottomNavigationBarItem>[
-//     BottomNavigationBarItem(
-//       icon: Icon(
-//         Icons.home,
-//         size: 25.0,
-//         color: Colors.black87,
-//       ),
-//       label: 'Home',
-//     ),
-//     BottomNavigationBarItem(
-//       icon: Icon(
-//         Icons.currency_exchange,
-//         size: 25.0,
-//         color: Colors.black87,
-//       ),
-//       label: 'Convert',
-//     ),
-//     BottomNavigationBarItem(
-//       icon: Icon(
-//         Icons.settings,
-//         size: 25.0,
-//         color: Colors.black87,
-//       ),
-//       label: 'Settings',
-//     ),
-//   ],
-//   selectedLabelStyle: TextStyle(
-//     fontSize: 17.0,
-//     fontFamily: 'Oswald',
-//     fontWeight: FontWeight.w900,
-//     color: Colors.black87,
-//   ),
-//   unselectedLabelStyle: TextStyle(
-//     fontSize: 14.0,
-//     fontFamily: 'Oswald',
-//     fontWeight: FontWeight.w600,
-//     color: Colors.black87,
-//   ),
-// ),

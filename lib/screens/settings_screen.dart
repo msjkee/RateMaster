@@ -12,8 +12,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.tealAccent,
-      bottomNavigationBar: BottomNavBar(),
+      bottomNavigationBar: BottomNavBar(
+        dashboardIsSelected: false,
+        convertIsSelected: false,
+        settingsIsSelected: true,
+      ),
     );
   }
 }
