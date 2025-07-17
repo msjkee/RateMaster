@@ -4,6 +4,7 @@ import 'package:rate_master_flutter/widgets/auto_sliding_carousel.dart';
 import 'package:rate_master_flutter/utilities/constants.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:rate_master_flutter/widgets/bottom_nav_bar.dart';
+import 'package:rate_master_flutter/widgets/crypto_coin_row.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -14,6 +15,7 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   List<CryptoCurrency>? topCoins;
+  List<CryptoCurrency>? dashboardCoins;
   late final PageController _pageController;
 
   @override
@@ -25,13 +27,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
         viewportFraction: 1
     );
     loadTopCryptoCurrencies();
+    loadDashboardCryptoCurrencies();
   }
 
   @override
   void dispose() {
     super.dispose();
   }
-  
+
+  // Top Coins
   Future<void> loadTopCryptoCurrencies() async {
     CryptoCurrency cryptoCurrency = CryptoCurrency();
     final list = await cryptoCurrency.fetchTopCryptos(5);
@@ -40,9 +44,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
     });
   }
 
+  // Dashboard Coins
+  Future<void> loadDashboardCryptoCurrencies() async {
+    CryptoCurrency cryptoCurrency = CryptoCurrency();
+    final list = await cryptoCurrency.fetchTopCryptos(25);
+    setState(() {
+      dashboardCoins = list;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    if (topCoins == null) {
+    if (topCoins == null && dashboardCoins == null) {
       return kLoadingSpinKit;
     }
 
@@ -53,63 +66,74 @@ class _DashboardScreenState extends State<DashboardScreen> {
         settingsIsSelected: false,
       ),
       body: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget> [
-              Text(
-                'Dive into the World of Currencies',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontFamily: 'Oswald',
-                  fontSize: 40.0,
-                  fontWeight: FontWeight.bold
-                )
-              ),
-              Container(
-                padding: EdgeInsets.all(40),
-                child: TextField(
-                  style: kTextFieldTextStyle,
-                  decoration: kTextFieldInputDecoration.copyWith(
-                    fillColor: Colors.grey.shade300,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget> [
+                Text(
+                  'Dive into the World of Currencies',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontFamily: 'Oswald',
+                    fontSize: 40.0,
+                    fontWeight: FontWeight.bold
                   )
                 ),
-              ),
-              Center(
-                child: Text(
-                  'Top Crypto Currencies',
-                  style: kDashboardTopCoinsTextStyle,
-                ),
-              ),
-              SizedBox(
-                width: 220,
-                height: 400,
-                child: Center(
-                  child: AutoSlidingCarousel(
-                    controller: _pageController,
-                    viewportFraction: 1,
-                    interval: const Duration(seconds: 3),
-                    coins: topCoins!
-                  )
-                ),
-              ),
-              Center(
-                child: SmoothPageIndicator(
-                  controller: _pageController,
-                  count: topCoins!.length,
-                  effect: SlideEffect(
-                    dotColor: Colors.grey.shade400,
-                    activeDotColor: Colors.black87
+                Container(
+                  padding: EdgeInsets.all(40),
+                  child: TextField(
+                    style: kTextFieldTextStyle,
+                    decoration: kTextFieldInputDecoration.copyWith(
+                      fillColor: Colors.grey.shade300,
+                    )
                   ),
                 ),
-              )
-            ],
+                Center(
+                  child: Text(
+                    'Top Crypto Currencies',
+                    style: kDashboardTopCoinsTextStyle,
+                  ),
+                ),
+                SizedBox(
+                  width: 220,
+                  height: 400,
+                  child: Center(
+                    child: AutoSlidingCarousel(
+                      controller: _pageController,
+                      viewportFraction: 1,
+                      interval: const Duration(seconds: 3),
+                      coins: topCoins!
+                    )
+                  ),
+                ),
+                Center(
+                  child: SmoothPageIndicator(
+                    controller: _pageController,
+                    count: topCoins!.length,
+                    effect: SlideEffect(
+                      dotColor: Colors.grey.shade400,
+                      activeDotColor: Colors.black87
+                    ),
+                  ),
+                ),
+
+                  
+                // Dashboard Coins
+                for (var coin in dashboardCoins!)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 10.0),
+                    child: CryptoCoinRow(
+                      coin: coin
+                    ),
+                  ),
+              ],
+            ),
           )
       )
     );
   }
 }
-
 
 //TODO: MAKE A BOTTOM NAV BAR (MAKE IT AS CONTAINERS) *CUSTOM WIDGET* DONE
 //TODO: NAVIGATION LOGIC *** DONE
@@ -119,3 +143,5 @@ class _DashboardScreenState extends State<DashboardScreen> {
 //TODO: SETTINGS PAGE
 //TODO: CONVERT PAGE
 //TODO: DESIGN
+
+//TODO: DO NOT ALLOW TO SCROLL PAGE VIEW (TOP CURRENCIES) ???
