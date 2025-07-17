@@ -12,29 +12,30 @@ class CryptoCoinRow extends StatelessWidget {
     return Expanded(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
+        children: <Widget> [
           // Rank
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              '${coin.rank}',
-              style: kLabelTextStyle,
+          Expanded(
+            flex: 1,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                '${coin.rank}',
+                style: kLabelTextStyle,
+              ),
             ),
           ),
           // Logo
           Expanded(
-            child: CircleAvatar(
-              radius: 25.0,
-              backgroundColor: Colors.blue.withOpacity(0.2),
-              child: Image.network(
-                coin.getIconUrl(),
-                width: 30.0,
-                height: 30.0,
-              )
+            flex: 1,
+            child: Image.network(
+              coin.getIconUrl(),
+              width: 30.0,
+              height: 30.0,
             ),
           ),
           // Name
           Expanded(
+            flex: 2,
             child: Text(
               '${coin.symbol}',
               style: kCoinNameTextStyle.copyWith(
@@ -44,6 +45,7 @@ class CryptoCoinRow extends StatelessWidget {
           ),
           // Price
           Expanded(
+            flex: 2,
             child: Text(
               '\$${coin.price?.toDouble().toStringAsFixed(2)}',
               style: kCoinPriceTextStyle.copyWith(
@@ -54,6 +56,7 @@ class CryptoCoinRow extends StatelessWidget {
           ),
           // Change Percent
           Expanded(
+            flex: 2,
             child: Text(
               '${coin.changePercent?.toDouble().toStringAsFixed(2)}\%',
               style: kCoinChangePercentTextStyle.copyWith(

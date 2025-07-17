@@ -117,8 +117,36 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ),
                   ),
                 ),
-
-                  
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Center(
+                    child: Text(
+                      'Dashboard',
+                      style: kDashboardTopCoinsTextStyle
+                    )
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget> [
+                    Text(
+                      'Rank',
+                      style: kLabelTextStyle
+                    ),
+                    Text(
+                      'Name',
+                      style: kLabelTextStyle,
+                    ),
+                    Text(
+                      'Price',
+                      style: kLabelTextStyle
+                    ),
+                    Text(
+                      'Change 24H',
+                      style: kLabelTextStyle,
+                    )
+                  ],
+                ),
                 // Dashboard Coins
                 for (var coin in dashboardCoins!)
                   Padding(
@@ -138,7 +166,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
 //TODO: MAKE A BOTTOM NAV BAR (MAKE IT AS CONTAINERS) *CUSTOM WIDGET* DONE
 //TODO: NAVIGATION LOGIC *** DONE
 //TODO: DESIGN BOTTOM NAV BAR (HEIGHT, ACTIVE COLORS, DISABLED COLORS) *** DONE, BUT NEED TO DIVE INTO PADDINGS, MARGINS AND HEIGHT-WIDTH PARAMETERS OF CONTAINERS
+//TODO: CRYPTO DASHBOARD *** DONE
 
+//TODO: DESIGN THIS CRYPTO DASHBOARD (CURRENTLY IN PROGRESS)
 //TODO: SEARCH LOGIC (CRYPTO AND CURRENCY) *DASHBOARD SCREEN, I GUESS*
 //TODO: SETTINGS PAGE
 //TODO: CONVERT PAGE
