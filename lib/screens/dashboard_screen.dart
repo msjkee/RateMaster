@@ -5,6 +5,7 @@ import 'package:rate_master_flutter/utilities/constants.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:rate_master_flutter/widgets/bottom_nav_bar.dart';
 import 'package:rate_master_flutter/widgets/crypto_coin_row.dart';
+import 'package:rate_master_flutter/widgets/desired_crypto_coin.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -16,6 +17,7 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   List<CryptoCurrency>? topCoins;
   List<CryptoCurrency>? dashboardCoins;
+  CryptoCurrency? coin;
   late final PageController _pageController;
 
   @override
@@ -86,7 +88,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     style: kTextFieldTextStyle,
                     decoration: kTextFieldInputDecoration.copyWith(
                       fillColor: Colors.grey.shade300,
-                    )
+                    ),
+                    onSubmitted: (input) async {
+                      final found = await CryptoCurrency().searchForCryptoCoin(input);
+                      showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            //shape: CircleBorder(),
+
+                            content: DesiredCryptoCoin(coin: found)
+                          )
+                      );
+                    },
                   ),
                 ),
                 Center(

@@ -52,6 +52,20 @@ class CryptoCurrency {
         .map((e) => CryptoCurrency.fromJson(e as Map<String, dynamic>)).toList();
   }
 
+  Future<dynamic> searchForCryptoCoin(String symbol) async {
+    final uri = Uri.https(
+      'rest.coincap.io',
+      '/v3/assets/${symbol.toLowerCase()}',
+      {
+        'apiKey': _apiKey
+      }
+    );
+
+    final cryptoData = await NetworkHelper(url: uri.toString()).getData();
+    final Map<String, dynamic> json = cryptoData['data'] as Map<String, dynamic>;
+    return CryptoCurrency.fromJson(json);
+  }
+
   String getIconUrl() {
     final symbolLowerCase = symbol?.toLowerCase() ?? '';
     return 'https://static.coincap.io/assets/icons/${symbolLowerCase}@2x.png';
