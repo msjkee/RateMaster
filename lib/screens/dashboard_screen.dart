@@ -94,9 +94,26 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       showDialog(
                           context: context,
                           builder: (context) => AlertDialog(
-                            //shape: CircleBorder(),
-
-                            content: DesiredCryptoCoin(coin: found)
+                            title: Text(
+                                'Information',
+                              style: kDashboardTopCoinsTextStyle,
+                              textAlign: TextAlign.center,
+                            ),
+                            actions: <Widget> [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text(
+                                  'Back'
+                                )
+                              )
+                            ],
+                            content: Container(
+                                height: 200.0,
+                                width: 130.0,
+                                child: DesiredCryptoCoin(coin: found)
+                            )
                           )
                       );
                     },
