@@ -90,3 +90,10 @@ const kLoadingSpinKit = Scaffold(
         ),
     ),
 );
+
+const kDashboardLabelTextStyle = TextStyle(
+    fontFamily: 'Noto_Serif',
+    fontSize: 15.0,
+    fontWeight: FontWeight.w500,
+    color: Colors.black87
+);

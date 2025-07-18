@@ -57,10 +57,14 @@ class CryptoCoinRow extends StatelessWidget {
           // Change Percent
           Expanded(
             flex: 2,
-            child: Text(
-              '${coin.changePercent?.toDouble().toStringAsFixed(2)}\%',
-              style: kCoinChangePercentTextStyle.copyWith(
-                color: coin.getPercentColor()
+            child: Container(
+              margin: EdgeInsets.only(left: 16.0),
+              child: Text(
+                '${coin.changePercent?.toDouble().toStringAsFixed(2)}\%',
+                style: kCoinChangePercentTextStyle.copyWith(
+                  color: coin.getPercentColor(),
+                  fontSize: 15.0
+                ),
               ),
             ),
           )
